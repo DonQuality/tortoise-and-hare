@@ -1,0 +1,63 @@
+<html>
+<script>
+  function Animal(name, speed, focus) {
+    this.name = name;
+    this.speed= speed; //distance moved per step
+    this.focus= focus; //scale of 0 to 10, probability of moving in a given step
+    this.position = 0;
+    this.move = function() { //Makes a move
+      if (Math.random()*10 < this.focus) {//for focus = 8, moves 80% of the time
+        this.position+=speed;
+      }
+    }
+  }
+
+
+  function Race(animal1,animal2) {
+    this.animal1 = animal1;
+    this.animal2 = animal2;
+    this.totalDistance = 50;
+
+    this.run = function () {
+      while (true) { //when somebody wins, we return, which kills the loop.
+        this.animal1.move();
+        this.animal2.move();
+
+        if ((animal1.position>=this.totalDistance)&&//Animal1 wins if they cross
+            (animal2.position<this.totalDistance)) {  //and animal2 doesn't
+          return animal1.name;
+        }
+        if ((animal2.position>=this.totalDistance)&&  //and vice versa
+            (animal1.position<this.totalDistance)) {
+          return animal2.name;
+        }
+        if ((animal2.position>=this.totalDistance)&&  //if it looks like a tie
+            (animal1.position>=this.totalDistance)) {
+          if (animal2.position>animal1.position) { //figure out who went farther
+            return animal2.name;
+          } else if (animal1.position>animal2.position) {
+            return animal1.name;
+          } else {                            //They both went the same distance
+            return "TIE"; //This is a flag; we'll use it differently from a name
+          }
+        }
+      }
+    }
+  }
+
+  var rabbit = new Animal("Peter",3,3); //relative speed is just the product, 9
+  var turtle = new Animal("Beth", 1, 10);//rel. speed is 10, should always win
+                                        //(except sometimes short races)
+
+  var bigRace = new Race(rabbit, turtle);
+
+  alert("Winner of the big race is " + bigRace.run());
+
+  bigRace.totalDistance = 10;//short race
+  alert("Winner of the " + bigRace.totalDistance + " m race is " +
+          bigRace.run());
+
+
+
+</script>
+</html>
