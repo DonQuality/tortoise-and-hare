@@ -16,7 +16,7 @@ function Animal(name, speed, focus, pBarId) {
   };
 
   this.move = function () { //Makes a move
-    if (Math.random() * 10 < this.focus) {//for focus = 8, moves 80% of the time
+    if ((Math.random() * 10) < this.focus) {//for focus = 8, moves 80% of the time
       this.position += speed;
     }
   };
