@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Rabbit Race</title>
+</head>
+<body>
+  <h1>The tortoise and the hare</h1>
+  <h3>Rabbit</h3>
+  <form>
+    Name: <input id="rabbname" type="text" value="Peter">
+    Speed: <input id="rabbspeed" type="text" value="3">
+    Focus: <input id="rabbfocus" type="text" value="3">
+  </form></br>
+  <progress id="rabbbar" max="100" value="0"><span>0</span>%</progress>
+
+  <h3 id="tname">Turtle</h3>
+  <form>
+    Name: <input id="turtname" type="text" value="Beth">
+    Speed: <input id="turtspeed" type="text" value="1">
+    Focus: <input id="turtfocus" type="text" value="10">
+  </form></br>
+  <progress id="turtbar" max="100" value="0"><span>0</span>%</progress>
+  <br><br>
+  <form>
+    Race length: <input id="racelength" type="text" value="50">
+  </form>
+  <br>
+  <script src="javascripts/race.js" type="text/javascript"></script>
+  <button type="button" onclick="firstButtonHit()">Run a race</button>
+  <button type="button" onclick="bigRace.run100()">Run 100 races</button>
+</body>
+</html>
+
