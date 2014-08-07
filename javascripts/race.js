@@ -11,13 +11,13 @@ function Animal(name, speed, focus, pBarId) {
 
   this.reInitialize = function () {
     this.name = nameForm.value;
-    this.speed = speedForm.value;
-    this.focus = focusForm.value;
+    this.speed = Number(speedForm.value);
+    this.focus = Number(focusForm.value);
   };
 
   this.move = function () { //Makes a move
     if ((Math.random() * 10) < this.focus) {//for focus = 8, moves 80% of the time
-      this.position += speed;
+      this.position += this.speed;
     }
   };
 
@@ -50,21 +50,21 @@ function Race(animal1, animal2) {
       this.animal2.move();
       this.animal2.updateProgress(this.animal2.position / this.totalDistance * 100);
 
-      if ((animal1.position >= this.totalDistance) &&//Animal1 wins if they cross
-          (animal2.position < this.totalDistance)) {  //and animal2 doesn't
-        return animal1.name;
+      if ((this.animal1.position >= this.totalDistance) &&//Animal1 wins if they cross
+          (this.animal2.position < this.totalDistance)) {  //and animal2 doesn't
+        return this.animal1.name;
       }
-      if ((animal2.position >= this.totalDistance) &&  //and vice versa
-          (animal1.position < this.totalDistance)) {
-        return animal2.name;
+      if ((this.animal2.position >= this.totalDistance) &&  //and vice versa
+          (this.animal1.position < this.totalDistance)) {
+        return this.animal2.name;
       }
-      if ((animal2.position >= this.totalDistance) &&  //if it looks like a tie
-          (animal1.position >= this.totalDistance)) {
-        if (animal2.position > animal1.position) { //figure out who went farther
-          return animal2.name;
+      if ((this.animal2.position >= this.totalDistance) &&  //if it looks like a tie
+          (this.animal1.position >= this.totalDistance)) {
+        if (this.animal2.position > this.animal1.position) { //figure out who went farther
+          return this.animal2.name;
         }
         if (animal1.position > animal2.position) {
-          return animal1.name;
+          return this.animal1.name;
         }              //They both went the same distance if we get here
         return "TIE"; //This is a flag; we'll use it differently from a name
 
